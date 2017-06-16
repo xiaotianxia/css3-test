@@ -4,60 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>transform: perspective</title>
-    <style>
-        .wrapper {
-            display: inline-block;
-            margin: 10px 20px;
-            width: 100px;
-            height: 100px;
-            border: 1px dotted #ccc;
-        }
-        img {
-            width: 100px;
-            height: 100px;
-            animation-duration: 3s;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-        }
-        .x {
-            animation-name: rotatex;
-        }
-        .y {
-            animation-name: rotatey;
-        }
-        .z {
-            animation-name: rotatez;
-        }
-        @keyframes rotatex {
-            0% {
-                transform: perspective(50px) rotateX(0deg);
-            }
-            100% {
-                transform: perspective(3000px) rotateX(360deg);
-            }
-        }
-        @keyframes rotatey {
-            0% {
-                transform: perspective(50px) rotateY(0deg);
-            }
-            100% {
-                transform: perspective(3000px) rotateY(360deg);
-            }
-        }
-        @keyframes rotatez {
-            0% {
-                transform: perspective(50px) rotateZ(0deg);
-            }
-            100% {
-                transform: perspective(3000px) rotateZ(360deg);
-            }
-        }
-    </style>
+    <title>目录</title>
 </head>
 <body>
-    <div class="wrapper"><img class="x" src="./img/1.png"></div>
-    <div class="wrapper"><img class="y" src="./img/1.png"></div>
-    <div class="wrapper"><img class="z" src="./img/1.png"></div>
+    <ul>
+        <li>
+            <a href="./index_1.html" target="_blank">1</a>
+        </li>
+        <li>
+            <a href="./index_2.html" target="_blank">2</a>
+        </li>
+        <li>
+            <a href="./index_3.html" target="_blank">3</a>
+        </li>
+        <li>
+            <a href="./index_4.html" target="_blank">4</a>
+        </li>
+    </ul>
 </body>
 </html>
