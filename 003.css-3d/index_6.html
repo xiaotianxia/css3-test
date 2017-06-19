@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+    html,
+    body {
+        height: 100%;
+        background-color: #ccc;
+    }
+    .my-container {
+        width: 800px;
+        height: 500px;
+        margin: 20px auto;
+    }
+    .photo-wrap {
+        perspective: 800px;
+        width: 800px;
+    }
+    .container {
+        width: 800px;
+        height: 500px;
+        margin: 0 auto;
+        position: relative;
+        transform-style: preserve-3d;
+        animation: rotate linear 50s infinite;
+    }
+    .img {
+        position: absolute;
+        width: 200px;
+        height: 118px;
+        line-height: 118px;
+        text-align: center;
+        top: 160px;
+        left: 300px;
+        background: pink;
+        border: 4px solid #fff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.9) inset;
+        overflow: hidden;
+    }
+    .img img {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    @keyframes rotate {
+        from {
+            transform: rotateY(0deg);
+        }
+        to {
+            transform: rotateY(360deg);
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="my-container">  <!-- 大容器 -->
+        <div class="photo-wrap">  <!-- 舞台 -->
+            <div class="container js-container">   <!-- 相册容器 -->
+                <div class="img img01 js-img">
+                    <img src="./img/pic01.png" alt="照片">
+                </div>
+                <div class="img img02 js-img">
+                    <img src="./img/pic02.png" alt="照片">
+                </div>
+                <div class="img img03 js-img">
+                    <img src="./img/pic03.png" alt="照片">
+                </div>
+                <div class="img img04 js-img">
+                    <img src="./img/pic04.png" alt="照片">
+                </div>
+                <div class="img img05 js-img">
+                    <img src="./img/pic05.png" alt="照片">
+                </div>
+                <div class="img img06 js-img">
+                    <img src="./img/pic06.png" alt="照片">
+                </div>
+                <div class="img img07 js-img">
+                    <img src="./img/pic07.png" alt="照片">
+                </div>
+                <div class="img img08 js-img">
+                    <img src="./img/pic08.png" alt="照片">
+                </div>
+                <div class="img img09 js-img">
+                    <img src="./img/pic09.png" alt="照片">
+                </div>
+                <div class="img img08 js-img">
+                    <img src="./img/pic08.png" alt="照片">
+                </div>
+                <div class="img img09 js-img">
+                    <img src="./img/pic09.png" alt="照片">
+                </div>
+                <div class="img img08 js-img">
+                    <img src="./img/pic08.png" alt="照片">
+                </div>
+                <div class="img img09 js-img">
+                    <img src="./img/pic09.png" alt="照片">
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    (function () {
+        var album = {
+            init: function () {
+                this.$container = $('.js-container');
+                this.$imgs = this.$container.find('.js-img');
+                this.imgLength = this.$imgs.length;
+                this.imgWidth = 200;
+
+                this.render3D ();
+                this.bindEvent ();
+            },
+
+            bindEvent: function () {
+                $('body').on('mousemove', $.proxy(this.onMousemove, this));
+                $('body').on('mouseleave', $.proxy(this.onMouseLeave, this));
+            },
+
+            onMousemove: function (e) {
+                this.$container.css({
+                    'transform': 'rotateY(' + e.pageX / 10 + 'deg) rotateX(' + e.pageY / 10 + 'deg)'
+                });
+            },
+
+            onMouseLeave: function (e) {
+                this.$container.css({
+                    'transform': 'rotateY(0deg) rotateX(0deg)'
+                });
+            },
+
+            render3D: function () {
+                var angel = 360 / this.imgLength,
+                    radius = 50 + this.imgWidth / (2 * Math.tan(Math.PI * angel / 2 / 180)); // 圆盘的直径
+                console.log(radius);
+                $.each(this.$imgs, function (index, item) {
+                    $(item).css({
+                        'transform': 'rotateY(' + index * angel + 'deg) translateZ(' + radius + 'px)'
+                    });
+                });
+            }
+        };
+
+        album.init();
+    }) ();
+</script>
+</body>
+</html>
