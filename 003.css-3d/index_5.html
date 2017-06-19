@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>book</title>
+    <style>
+    body {
+        background-color: #000;
+    }
+    .box {
+        position: relative;
+        display: flex;
+        width: 200px;
+        height: 240px;
+        border: 1px dashed #ccc;
+        margin: 50px 200px;
+        perspective: 1000px;
+        align-items: center;
+        justify-content: center;
+        transform-style: preserve-3d;
+        transform: rotateX(45deg) scale3d(1, 1, 1);
+    }
+    .page {
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform-origin: 0 0;
+    }
+    .border {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 2px;
+        height: 100%;
+        background-color: #fff;
+    }
+    .cover {
+        z-index: 1;
+        background: #f00;
+        animation: open1 .5s linear .5s;
+        animation-fill-mode: forwards;
+    }
+    .inner {
+        background: #666;
+    }
+
+    @keyframes open {
+        0% {
+            transform: rotateY(0deg);
+        }
+        100% {
+            transform: rotateY(-178deg);
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="page cover">
+            <div class="border"></div>
+            封面
+        </div>
+        <div class="page inner">内页</div>
+    </div>
+</body>
+</html>
