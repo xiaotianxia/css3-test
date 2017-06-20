@@ -60,6 +60,7 @@
     </style>
 </head>
 <body>
+    <p class="js-num"></p>
     <div class="my-container">  <!-- 大容器 -->
         <div class="photo-wrap">  <!-- 舞台 -->
             <div class="container js-container">   <!-- 相册容器 -->
@@ -110,12 +111,24 @@
         var album = {
             init: function () {
                 this.$container = $('.js-container');
+                this.jsutTest ();
                 this.$imgs = this.$container.find('.js-img');
                 this.imgLength = this.$imgs.length;
                 this.imgWidth = 200;
 
                 this.render3D ();
                 this.bindEvent ();
+            },
+
+            jsutTest: function () {
+                var $imgs = this.$container.find('.js-img');
+                var random = Math.floor($imgs.length * Math.random());
+                $('.js-num').html(13 - random + '张');
+                $.each($imgs, function (index, item) {
+                    if(index < random) {
+                        $(item).remove();
+                    }
+                });
             },
 
             bindEvent: function () {
@@ -138,7 +151,9 @@
             render3D: function () {
                 var angel = 360 / this.imgLength,
                     radius = 50 + this.imgWidth / (2 * Math.tan(Math.PI * angel / 2 / 180)); // 圆盘的直径
-                console.log(radius);
+                if(this.imgLength == 1) {
+                    radius = 0;
+                }
                 $.each(this.$imgs, function (index, item) {
                     $(item).css({
                         'transform': 'rotateY(' + index * angel + 'deg) translateZ(' + radius + 'px)'
